@@ -1,0 +1,64 @@
+diff --git a/output_file.c b/output_file.c
+index 3785b06..5337a2c 100644
+--- a/output_file.c
++++ b/output_file.c
+@@ -141,7 +141,8 @@ static sparse_header_t sparse_header = {
+ 	.blk_sz = 0,
+ 	.total_blks = 0,
+ 	.total_chunks = 0,
+-	.image_checksum = 0
++	.image_checksum = 0,
++	.android = 0
+ };
+ 
+ static u8 *zero_buf;
+@@ -164,6 +165,7 @@ static int emit_skip_chunk(struct output_file *out, u64 skip_len)
+ 	chunk_header.reserved1 = 0;
+ 	chunk_header.chunk_sz = skip_len / info.block_size;
+ 	chunk_header.total_sz = CHUNK_HEADER_LEN;
++	chunk_header.android = info.block_size;
+ 	ret = out->ops->write(out, (u8 *)&chunk_header, sizeof(chunk_header));
+ 	if (ret < 0)
+ 		return -1;
+@@ -226,6 +228,7 @@ static int write_chunk_raw(struct output_file *out, u64 off, u8 *data, int len)
+ 	chunk_header.reserved1 = 0;
+ 	chunk_header.chunk_sz = rnd_up_len / info.block_size;
+ 	chunk_header.total_sz = CHUNK_HEADER_LEN + rnd_up_len;
++	chunk_header.android = 0x08054465;
+ 	ret = out->ops->write(out, (u8 *)&chunk_header, sizeof(chunk_header));
+ 
+ 	if (ret < 0)
+diff --git a/simg2img.c b/simg2img.c
+index 88c67b4..2960a21 100644
+--- a/simg2img.c
++++ b/simg2img.c
+@@ -163,7 +163,8 @@ int main(int argc, char *argv[])
+ 			fprintf(stderr, "Error reading chunk header\n");
+ 			exit(-1);
+ 		}
+- 
++
++
+ 		if (sparse_header.chunk_hdr_sz > CHUNK_HEADER_LEN) {
+ 			/* Skip the remaining bytes in a header that is longer than
+ 			 * we expected.
+diff --git a/sparse_format.h b/sparse_format.h
+index ba13214..bde24ad 100644
+--- a/sparse_format.h
++++ b/sparse_format.h
+@@ -26,6 +26,7 @@ typedef struct sparse_header {
+   __le32	image_checksum; /* CRC32 checksum of the original data, counting "don't care" */
+ 				/* as 0. Standard 802.3 polynomial, use a Public Domain */
+ 				/* table implementation */
++  __le32    android;
+ } sparse_header_t;
+ 
+ #define SPARSE_HEADER_MAGIC	0xed26ff3a
+@@ -39,6 +40,7 @@ typedef struct chunk_header {
+   __le16	reserved1;
+   __le32	chunk_sz;	/* in blocks in output image */
+   __le32	total_sz;	/* in bytes of chunk input file including chunk header and data */
++  __le32    android;
+ } chunk_header_t;
+ 
+ /* Following a Raw or Fill chunk is data.  For a Raw chunk, it's the data in chunk_sz * blk_sz.

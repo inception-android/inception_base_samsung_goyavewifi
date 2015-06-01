@@ -1,0 +1,42 @@
+{
+    "__extends__": "samsung.goyawifi", 
+    "__notes__": [
+        "SM-T113 requires a patched make_ext4fs to create a compatible cache.img",
+        "Supplied make_ext4fs is already patched, and you will find the patch file in extra/patches/patch_ext4_utils.diff",
+        "See http://forum.xda-developers.com/galaxy-tab-3/help/how-to-root-sm-t113-t3076658. Thanks to grizzlyfute",
+        "Current twrp is not stable and not full functioning, but is able to install the update package",
+        "It is advised to leave update.restore_stock = true, to have a working recovery mode on the device after update"
+    ],
+    "common": {
+        "tools": {
+            "make_ext4fs": {
+                "bin": "extra/bin/make_ext4fs"
+            }
+        }
+    },
+    "recovery": {
+        "make": true, 
+        "stock": "imgs/recovery_stock.img",
+        "img": "imgs/recovery_twrp.img",
+        "dev": "/dev/block/mmcblk0p21"
+    }, 
+    "device": {
+        "name": "goyawifi_sm-t113"
+    }, 
+    "cache": {
+        "make": false,
+        "pit_name": "CSC",
+        "size": 209715200
+    }, 
+    "boot": {
+        "make": false
+    }, 
+    "update": {
+        "restore_stock": true,
+        "keys": null, 
+        "make": true, 
+        "network": {
+            "aps": []
+        }
+    }
+}
