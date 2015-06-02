@@ -1,5 +1,5 @@
 {
-    "__extends__": "samsung.goyawifi", 
+    "__extends__": "samsung.common", 
     "__notes__": [
         "SM-T113 requires a patched make_ext4fs to create a compatible cache.img",
         "Supplied make_ext4fs is already patched, and you will find the patch file in extra/patches/patch_ext4_utils.diff",
