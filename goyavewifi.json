@@ -15,7 +15,7 @@
         }
     },
     "recovery": {
-        "make": true, 
+        "__make__": true, 
         "stock": "imgs/recovery_stock.img",
         "img": "imgs/recovery_twrp.img",
         "dev": "/dev/block/mmcblk0p21"
@@ -24,17 +24,17 @@
         "name": "goyawifi_sm-t113"
     }, 
     "cache": {
-        "make": false,
+        "__make__": false,
         "pit_name": "CSC",
         "size": 209715200
     }, 
     "boot": {
-        "make": false
+        "__make__": false
     }, 
     "update": {
         "restore_stock": true,
         "keys": null, 
-        "make": true, 
+        "__make__": true, 
         "network": {
             "aps": []
         }
