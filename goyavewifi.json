@@ -26,7 +26,8 @@
     "cache": {
         "__make__": false,
         "pit_name": "CSC",
-        "size": 209715200
+        "size": 209715200,
+        "out": "cache.img"
     }, 
     "boot": {
         "__make__": false
