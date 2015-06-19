@@ -1,10 +1,10 @@
 {
     "__extends__": "samsung.common", 
     "__notes__": [
-        "SM-T113 requires a patched make_ext4fs to create a compatible cache.img",
-        "Supplied make_ext4fs is already patched, and you will find the patch file in extra/patches/patch_ext4_utils.diff",
-        "See http://forum.xda-developers.com/galaxy-tab-3/help/how-to-root-sm-t113-t3076658. Thanks to grizzlyfute",
-        "Current twrp is not stable and not full functioning, but is able to install the update package",
+        "SM-T113 requires a patched make_ext4fs to create a compatible cache.img", 
+        "Supplied make_ext4fs is already patched, and you will find the patch file in extra/patches/patch_ext4_utils.diff", 
+        "See http://forum.xda-developers.com/galaxy-tab-3/help/how-to-root-sm-t113-t3076658. Thanks to grizzlyfute", 
+        "Current twrp is not stable and not full functioning, but is able to install the update package", 
         "It is advised to leave update.restore_stock = true, to have a working recovery mode on the device after update"
     ],
     "common": {
@@ -14,30 +14,1622 @@
             }
         }
     },
+    "__config__": {
+        "host": {
+            "bin": {
+                "make_ext4fs": {
+                    "arch": {
+                        "x86": "extra/bin/make_ext4fs",
+                        "x86_64": "extra/bin/make_ext4fs"
+                    }
+                },
+                "apktool": {
+                    "frameworks_dir": "frameworks"
+                }
+            }
+        },
+        "target": {
+            "mount": {
+                "cache": {
+                    "mount": "/cache", 
+                    "fs": "ext4", 
+                    "dev": "/dev/block/platform/sprd-sdhci.3/by-name/CSC", 
+                    "size": 209715200,
+                    "pit_name": "CSC"
+                }, 
+                "data": {
+                    "mount": "/data", 
+                    "fs": "ext4", 
+                    "dev": "/dev/block/platform/sprd-sdhci.3/by-name/userdata", 
+                    "size": 5901385728
+                }, 
+                "system": {
+                    "mount": "/system", 
+                    "fs": "ext4", 
+                    "dev": "/dev/block/platform/sprd-sdhci.3/by-name/system", 
+                    "size": 1572864000
+                },
+                "recovery": {
+                    "dev": "/dev/block/mmcblk0p21"
+                }
+            }
+        }
+    }, 
     "recovery": {
-        "__make__": true, 
-        "stock": "imgs/recovery_stock.img",
-        "img": "imgs/recovery_twrp.img",
-        "dev": "/dev/block/mmcblk0p21"
-    }, 
-    "device": {
-        "name": "goyawifi_sm-t113"
-    }, 
-    "cache": {
-        "__make__": false,
-        "pit_name": "CSC",
-        "size": 209715200,
-        "out": "cache.img"
-    }, 
-    "boot": {
-        "__make__": false
+        "img": "imgs/recovery_stock.img",
+        "stock": "imgs/recovery_stock.img"
     }, 
     "update": {
-        "restore_stock_recovery": true,
-        "keys": null, 
-        "__make__": true, 
-        "network": {
-            "aps": []
+        "settings": {
+            "locksettings": {
+                "version": 2, 
+                "data": {
+                    "locksettings": {
+                        "migrated": "true", 
+                        "lockscreen.power_button_instantly_locks": "1", 
+                        "lockscreen.options": "enable_facelock", 
+                        "lockscreen.disabled": "0", 
+                        "migrated_user_specific": "true"
+                    }
+                }, 
+                "schema": "CREATE TABLE android_metadata (locale TEXT);CREATE TABLE locksettings (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,user INTEGER,value TEXT);"
+            }, 
+            "__make__": true, 
+            "com.android.providers.settings": {
+                "version": 98, 
+                "data": {
+                    "global": {
+                        "data_roaming": "0", 
+                        "def_tactileassist_sharpness_pzo": "15", 
+                        "mobile_data": "1", 
+                        "device_provisioned": "1", 
+                        "send_action_app_error": "1", 
+                        "def_tactileassist_density_lra": "15", 
+                        "dock_sounds_enabled": "0", 
+                        "low_battery_sound": "/system/media/audio/ui/LowBattery.ogg", 
+                        "preferred_network_mode": "0", 
+                        "def_tactileassist_strength_erm": "15", 
+                        "stay_on_while_plugged_in": "0", 
+                        "airplane_mode_radios": "cell,bluetooth,wifi,nfc", 
+                        "dock_audio_media_enabled": "1", 
+                        "netstats_enabled": "1", 
+                        "adb_enabled": "1", 
+                        "cert_pin_content_url": "https://www.gstatic.com/android/config_update/08202014-pins.txt", 
+                        "airplane_mode_on": "0", 
+                        "set_install_location": "0", 
+                        "car_dock_sound": "/system/media/audio/ui/Dock.ogg", 
+                        "wireless_charging_started_sound": "/system/media/audio/ui/WirelessChargingStarted.ogg", 
+                        "sms_short_codes_content_url": "http://www.gstatic.com/android/config_update/11052014-sms-blacklist.txt", 
+                        "car_undock_sound": "/system/media/audio/ui/Undock.ogg", 
+                        "def_tactileassist_internal_enable": "1", 
+                        "unlock_sound": "/system/media/audio/ui/Unlock.ogg", 
+                        "def_tactileassist_density_pzo": "15", 
+                        "package_verifier_enable": "1", 
+                        "desk_undock_sound": "/system/media/audio/ui/Undock.ogg", 
+                        "desk_dock_sound": "/system/media/audio/ui/Dock.ogg", 
+                        "def_tactileassist_strength_serm": "15", 
+                        "call_auto_retry": "0", 
+                        "wifi_max_dhcp_retry_count": "9", 
+                        "assisted_gps_enabled": "0", 
+                        "def_tactileassist_density_serm": "15", 
+                        "cdma_cell_broadcast_sms": "1", 
+                        "first_sim_brightness_flag": "-1", 
+                        "emergency_tone": "0", 
+                        "bluetooth_on": "0", 
+                        "power_sounds_enabled": "1", 
+                        "wifi_sleep_policy": "2", 
+                        "wifi_watchdog_version": "71565313", 
+                        "def_tactileassist_strength_pzo": "15", 
+                        "def_tactileassist_strength_lra": "15", 
+                        "subscription_mode": "1", 
+                        "def_tactileassist_level": "2", 
+                        "mtp_current_user_id": "0", 
+                        "def_tactileassist_sharpness_lra": "15", 
+                        "airplane_mode_toggleable_radios": "bluetooth,wifi,nfc", 
+                        "def_tactileassist_density_erm": "15", 
+                        "boot_time_connected": "0", 
+                        "wifi_p2p_device_name": "SM-T113", 
+                        "wifi_watchdog_on": "0", 
+                        "def_tactileassist_sharpness_erm": "15", 
+                        "wifi_on": "1", 
+                        "wifi_display_on": "0", 
+                        "font_size": "2", 
+                        "lock_sound": "/system/media/audio/ui/Lock.ogg", 
+                        "mode_ringer": "2", 
+                        "low_battery_sound_timeout": "0", 
+                        "wifi_scan_always_enabled": "0", 
+                        "default_install_location": "0", 
+                        "install_non_market_apps": "0", 
+                        "usb_mass_storage_enabled": "1", 
+                        "web_autofill_query_url": "http://android.clients.google.com/proxy/webautofill", 
+                        "sms_short_codes_metadata_url": "http://www.gstatic.com/android/config_update/11052014-sms-metadata.txt", 
+                        "def_tactileassist_enable": "0", 
+                        "def_tactileassist_sharpness_serm": "15", 
+                        "cert_pin_metadata_url": "https://www.gstatic.com/android/config_update/08202014-metadata.txt", 
+                        "wifi_networks_available_notification_on": "1", 
+                        "auto_time": "0", 
+                        "audio_safe_volume_state": "3", 
+                        "auto_time_zone": "0"
+                    }, 
+                    "system": {
+                        "motion_zooming_guide_show_again": "1", 
+                        "arc_motion_call_accept": "0", 
+                        "category_value_db": "0", 
+                        "bt_svcst_com.android.bluetooth.hid.HidService": "1", 
+                        "country_code": "011", 
+                        "table_rotation_mode": "0", 
+                        "smart_pause": "0", 
+                        "parental_control_add_apps_auto": "1", 
+                        "finger_air_view_full_text": "0", 
+                        "fingerprint_used_samsungaccount": "0", 
+                        "FOTA_CLIENT_FOTA_TIME": "1434460419576", 
+                        "phone1_on": "1", 
+                        "smart_scroll_visual_feedback_icon": "1", 
+                        "button_key_light": "1500", 
+                        "easy_mode_camera": "1", 
+                        "arc_motion_browse": "0", 
+                        "driving_mode_schedule_notification": "0", 
+                        "drivelink_mode": "0", 
+                        "regional": "0", 
+                        "sim2_value": "0", 
+                        "db_lockscreen_is_smart_lock": "0", 
+                        "autoreject_maxcount": "100", 
+                        "easy_mode_phone": "1", 
+                        "my_profile_font_package": "com.monotype.android.font.cooljazz", 
+                        "lock_screen_face_with_voice": "0", 
+                        "mtp_running_status": "1", 
+                        "smart_bonding_file_size": "1", 
+                        "mode_ringer_streams_affected": "166", 
+                        "contextual_page_s_pen": "0", 
+                        "ultra_powersaving_mode": "0", 
+                        "lock_screen_clock_text_color": "-1", 
+                        "recommended_apps_automatically": "1", 
+                        "driving_mode_email_notification": "0", 
+                        "dtmf_tone": "1", 
+                        "easy_mode_email": "1", 
+                        "smart_scroll_unit": "0", 
+                        "notification_panel_active_number_of_apps_for_reset": "15", 
+                        "motion_shake_scan_guide_show_again": "1", 
+                        "default_ringtone": "content://media/internal/audio/media/50", 
+                        "spliteview_mode_memo": "1", 
+                        "powersaving_switch": "0", 
+                        "my_profile_text_size": "46", 
+                        "screen_mode_automatic_setting": "1", 
+                        "driving_mode_unlock_screen_contents": "0", 
+                        "easy_mode_messages": "1", 
+                        "kids_time_mgr_enable_end_min": "0", 
+                        "volume_bluetooth_sco": "7", 
+                        "assisted_dialing": "0", 
+                        "finger_print_shortcut_list": "; ; ; ; ; ; ; ; ; ;", 
+                        "sdcard_launch": "0", 
+                        "automatic_unlock": "0", 
+                        "my_profile_font_filename": "fonts/Cooljazz.ttf", 
+                        "driving_mode_air_call_accept": "0", 
+                        "pen_detachment_notification": "/system/media/audio/ui/Pen_att_noti1.ogg,/system/media/audio/ui/Pen_det_noti1.ogg", 
+                        "power_key_hold": "0", 
+                        "kg_multiple_lockscreen": "0", 
+                        "motion_shake_refresh_guide_show_again": "1", 
+                        "finger_air_view_sound_and_haptic_feedback": "0", 
+                        "onehand_dialer_enabled": "0", 
+                        "easy_mode_magnifier": "1", 
+                        "FOTA_CLIENT_HEARTBEAT_PERIOD": "0", 
+                        "dormant_always": "1", 
+                        "driving_mode_alarm_notification": "0", 
+                        "featurephone_mode_switch": "1", 
+                        "motion_unlock_camera_short_cut": "0", 
+                        "phone2_on": "1", 
+                        "psm_display": "1", 
+                        "FOTA_CLIENT_BOOT_TIME": "1434460119598", 
+                        "pen_hovering_speed_dial_preview": "0", 
+                        "show_password": "1", 
+                        "driving_mode_message_notification": "0", 
+                        "premium_watch_display_signature": "0", 
+                        "dualclock_menu_settings": "1", 
+                        "mtp_sync_alive": "0", 
+                        "drivelink_readout_speed": "2", 
+                        "sound_effects_enabled": "1", 
+                        "intelligent_screen_mode": "1", 
+                        "finger_air_view_magnifier": "0", 
+                        "air_motion_clip": "0", 
+                        "airplane_mode_on_reason_usb3": "0", 
+                        "spliteview_mode_calendar": "1", 
+                        "screen_off_timeout": "30000", 
+                        "window_animation_scale": "1.0", 
+                        "ringtone_after_vibration": "0", 
+                        "driving_mode_voice_mail_notification": "0", 
+                        "SOFTWARE_UPDATE_LAST_CHECKED_DATE": "1434460424329", 
+                        "unlock_text": "1", 
+                        "lockscreen_sounds_enabled": "1", 
+                        "recommended_apps_automatically_dockings": "1", 
+                        "glance_view_new_message": "0", 
+                        "my_profile_information": "Life companion", 
+                        "recommended_apps_automatically_roaming": "1", 
+                        "finger_air_view_pregress_bar_preview": "0", 
+                        "sip_key_feedback_sound": "1", 
+                        "glance_view_status_bar": "0", 
+                        "camera_quick_access": "0", 
+                        "dormant_disable_alarm_and_timer": "1", 
+                        "audio_balance": "50", 
+                        "boottime": "1", 
+                        "dormant_allow_list": "None", 
+                        "fingerprint_webpass": "0", 
+                        "my_profile_text_alignment": "1", 
+                        "smart_scroll_type": "0", 
+                        "usbapcpmode": "1", 
+                        "easy_mode_splanner": "1", 
+                        "dormant_end_hour": "6", 
+                        "cradle_enable": "0", 
+                        "lock_screen_shortcut": "0", 
+                        "samsung_eula_agree": "1", 
+                        "led_indicator_incoming_notification": "0", 
+                        "premium_watch_switch_onoff": "0", 
+                        "pen_hovering_list_scroll": "0", 
+                        "data_powersaving_mode": "0", 
+                        "lock_screen_vibration_feedback": "1", 
+                        "kids_time_mgr_enable_end_hour": "12", 
+                        "smart_scroll_adv_readers_hub": "1", 
+                        "volume_music": "7", 
+                        "mtp_usb_connection_status": "0", 
+                        "sip_key_feedback_vibration": "0", 
+                        "motion_shake": "0", 
+                        "motion_peek_view_albums_list": "0", 
+                        "pen_hovering_sound": "0", 
+                        "desk_home_screen_display": "0", 
+                        "motion_overturn": "0", 
+                        "auto_brightness_detail": "100", 
+                        "led_indicator_voice_recording": "1", 
+                        "motion_pick_up": "0", 
+                        "sliding_speed": "1", 
+                        "motion_engine": "0", 
+                        "toddler_mode_wifi_state": "0", 
+                        "glance_view_now_playing_music": "0", 
+                        "onehand_samsungkeypad_enabled": "0", 
+                        "dormant_disable_led_indicator": "1", 
+                        "air_motion_scroll": "0", 
+                        "bt_svcst_com.android.bluetooth.gatt.GattService": "1", 
+                        "finger_air_view_show_up_indicator": "0", 
+                        "kg_enable_camera_widget": "0", 
+                        "set_shortcuts_mode": "1", 
+                        "air_motion_glance_view": "0", 
+                        "air_motion_call_accept": "0", 
+                        "sim5_value": "0", 
+                        "motion_panning": "0", 
+                        "pen_hovering": "0", 
+                        "select_icon_1": "0", 
+                        "select_icon_2": "1", 
+                        "select_icon_3": "2", 
+                        "select_icon_4": "3", 
+                        "select_icon_5": "4", 
+                        "easy_mode_contacts": "1", 
+                        "volume_alarm": "11", 
+                        "tag_current_location_scrapbook": "0", 
+                        "information_ticker": "0", 
+                        "SMLDM_FOTA_START": "1", 
+                        "lockscreen_ripple_effect": "1", 
+                        "smart_bonding_notification_do_not_show": "0", 
+                        "mtp_usb_conditions_met": "0", 
+                        "notification_sound": "content://media/internal/audio/media/30", 
+                        "personal_mode_lock_type": "0", 
+                        "tag_current_location_voicerecorder": "0", 
+                        "settings_listui": "1", 
+                        "kids_home_mode": "0", 
+                        "SOFTWARE_UPDATE_AUTO_UPDATE": "1", 
+                        "motion_double_tap": "0", 
+                        "recommended_apps_list_earphones": "com.samsung.video/com.samsung.video.VideoMain;com.google.android.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity;com.android.chrome/com.google.android.apps.chrome.Main;com.google.android.music/com.android.music.activitymanagement.TopLevelActivity;", 
+                        "notification_panel_active_number_of_apps": "15", 
+                        "mouse_hovering_highlight": "0", 
+                        "multi_window_enabled": "1", 
+                        "arc_motion_ripple_effect": "0", 
+                        "contextual_page_car_cradle": "0", 
+                        "finger_air_view_highlight": "0", 
+                        "kg_enable_camera_widget_type": "1", 
+                        "call_conn_tone": "1", 
+                        "FOTA_CLIENT_TEST": "0", 
+                        "air_motion_item_move": "0", 
+                        "VIB_FEEDBACK_MAGNITUDE": "4", 
+                        "easy_mode_music": "1", 
+                        "mouse_hovering_information_preview": "0", 
+                        "smart_motion": "1", 
+                        "glance_view_battery_charging_info": "0", 
+                        "finger_air_view_information_preview": "0", 
+                        "haptic_feedback_extra": "0", 
+                        "cradle_connect": "0", 
+                        "pen_hovering_pointer": "1", 
+                        "default_vibration_pattern": "content://com.android.settings.personalvibration.PersonalVibrationProvider/1", 
+                        "drivelink_notification": "0", 
+                        "clock_position": "0", 
+                        "easy_mode_internet": "1", 
+                        "volume_notification": "11", 
+                        "dtmf_tone_type": "0", 
+                        "power_sharing_cable": "80", 
+                        "with_circle": "0", 
+                        "una_setting": "1", 
+                        "dormant_disable_notifications": "1", 
+                        "surface_tap_and_twist": "0", 
+                        "display_battery_percentage": "1", 
+                        "date_format": "dd-MM-yyyy", 
+                        "arc_motion_messaging": "0", 
+                        "finger_air_view": "0", 
+                        "call_end_tone": "1", 
+                        "arc_motion_search": "0", 
+                        "spliteview_mode_message": "1", 
+                        "safety_zone_notification_vibrate": "0", 
+                        "cover_note": "0", 
+                        "arc_motion_quick_glance": "0", 
+                        "pen_gesture_guide": "1", 
+                        "autoredial_mode": "0", 
+                        "spliteview_mode_myfiles": "1", 
+                        "my_profile_text_color": "-1", 
+                        "VIB_NOTIFICATION_MAGNITUDE": "5", 
+                        "contextual_page_earphone": "1", 
+                        "tag_current_location_camera": "0", 
+                        "master_motion": "0", 
+                        "fingerprint_secret_box": "0", 
+                        "volume_music_speaker": "0", 
+                        "aw_daemon_service_key_version_check": "2014", 
+                        "psm_switch": "1", 
+                        "toolbox_onoff": "0", 
+                        "safety_zone_notification_enable": "0", 
+                        "face_smart_scroll": "1", 
+                        "contextual_page_audio_dock": "1", 
+                        "volume_music_headset": "9", 
+                        "SOFTWARE_UPDATE_WIFI_ONLY": "1", 
+                        "volume_voice": "4", 
+                        "call_overlay_popup_preference": "0", 
+                        "mouse_hovering": "0", 
+                        "air_motion_note_swap": "0", 
+                        "my_profile_background_color": "0", 
+                        "safety_zone_list": "", 
+                        "pen_attach_detach_vibration": "0", 
+                        "smart_scroll_sensitivity": "15", 
+                        "lte_mode_switch": "1", 
+                        "drivelink_notification_incoming_call": "0", 
+                        "display_battery_level": "1", 
+                        "VIB_RECVCALL_MAGNITUDE": "5", 
+                        "lock_additional_steps": "0", 
+                        "mouse_hovering_magnetic_ui": "0", 
+                        "call_extra_volume": "1", 
+                        "lock_screen_clock_text_alignment": "1", 
+                        "high_contrast": "0", 
+                        "notification_panel_brightness_adjustment": "1", 
+                        "smart_scroll_adv_email_list": "1", 
+                        "power_saving_mode": "0", 
+                        "premium_watch_sound": "0", 
+                        "dsa_init_dialog_is_checked": "0", 
+                        "bt_svcst_init": "1", 
+                        "update_duration_db": "0", 
+                        "camera_quick_access_sound_feedback": "1", 
+                        "bt_svcst_com.android.bluetooth.a2dp.A2dpService": "1", 
+                        "recommended_apps_list_roaming": "com.sec.android.app.camera/com.sec.android.app.camera.Camera;com.sec.android.app.popupcalculator/com.sec.android.app.popupcalculator.Calculator;com.google.android.apps.maps/com.google.android.maps.MapsActivity;com.sec.android.app.clockpackage/com.sec.android.app.clockpackage.TabletClockPackage;", 
+                        "air_button_onoff": "0", 
+                        "sim1_value": "0", 
+                        "psm_cpu_clock": "1", 
+                        "dormant_start_min": "0", 
+                        "pen_hovering_ink_effect": "4", 
+                        "pen_detach_application": "0", 
+                        "information_ticker_auto_refresh": "1", 
+                        "easy_mode_home": "1", 
+                        "personal_mode_enabled": "0", 
+                        "toolbox_frequently_used": "0", 
+                        "media_mount_count": "0", 
+                        "cover_note_weather_unit": "0", 
+                        "easy_mode_myfiles": "1", 
+                        "access_control_enabled": "0", 
+                        "parental_control_block_call": "0", 
+                        "lock_screen_clock_size": "1", 
+                        "recommended_apps_setting": "1", 
+                        "smart_bonding_notification": "1", 
+                        "contents_type": "0", 
+                        "alertoncall_mode": "1", 
+                        "finger_air_view_speed_dial_tip": "0", 
+                        "drivelink_navigation": "navigation", 
+                        "psm_battery_level": "30", 
+                        "easy_mode_video": "1", 
+                        "open_camera": "0", 
+                        "spliteview_mode_im": "1", 
+                        "dormant_switch_onoff": "0", 
+                        "toolbox_apps": "com.sec.android.app.camera/com.sec.android.app.camera.Camera;com.sec.android.gallery3d/com.sec.android.gallery3d.app.Gallery;com.samsung.video/com.samsung.video.VideoMain;com.android.email/com.android.email.activity.Welcome;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;", 
+                        "premium_watch_dual_clock": "0", 
+                        "intelligent_rotation_mode": "0", 
+                        "driving_mode_on": "0", 
+                        "spliteview_mode_phone": "1", 
+                        "FOTA_CLIENT_HEARTBEAT_ADD": "", 
+                        "motion_panning_sensitivity": "5", 
+                        "psm_touchkey_led": "1", 
+                        "smart_scroll_adv_web": "1", 
+                        "hand_adaptable_operation": "0", 
+                        "magazine_card_switch": "0", 
+                        "mute_streams_affected": "46", 
+                        "dim_screen": "1", 
+                        "psm_location_manager": "1", 
+                        "smart_bonding_notification_do_not_show_speed": "0", 
+                        "multi_window_position": "0", 
+                        "country_cert_info_enable": "0", 
+                        "glance_view_time_date": "0", 
+                        "glance_view_missed_call": "0", 
+                        "FOTA_CLIENT_POLLING_TIME": "1435067112892", 
+                        "drivelink_rejectmessage_on": "0", 
+                        "pen_hovering_progress_preview": "0", 
+                        "bt_svcst_com.android.bluetooth.pan.PanService": "1", 
+                        "lock_screen_date_and_year": "1", 
+                        "mouse_hovering_full_text": "0", 
+                        "motion_peek_chapter_preview": "0", 
+                        "FOTA_CLIENT_REGISTRATION": "1", 
+                        "spliteview_mode_socialhub": "1", 
+                        "contextual_page_desk_cardle": "0", 
+                        "any_screen_running": "0", 
+                        "arc_motion_music_playback": "0", 
+                        "parental_control_block_key": "1", 
+                        "dormant_end_min": "0", 
+                        "motion_pan_to_browse_image": "0", 
+                        "storage_mmc_size": "7818182656", 
+                        "fingerprint_confirmed_samsungaccount": "0", 
+                        "media_player_mode": "0", 
+                        "surface_palm_swipe": "1", 
+                        "grip_rotation_lock": "0", 
+                        "notification_light_pulse": "0", 
+                        "sim3_value": "0", 
+                        "easy_mode_voicerecorder": "1", 
+                        "volume_music_headphone": "9", 
+                        "sound_profile_edit_mode": "0", 
+                        "uartapcpmode": "0", 
+                        "mouse_hovering_list_scroll": "0", 
+                        "smart_scroll_adv_chrome": "1", 
+                        "auto_adjust_touch": "0", 
+                        "show_clock": "1", 
+                        "pointer_speed": "0", 
+                        "blackgrey_powersaving_mode": "0", 
+                        "device_name": "SM-T113", 
+                        "motion_tilt_to_scroll_list_sensitivity": "5", 
+                        "arc_motion_always": "0", 
+                        "side_motion_peek": "0", 
+                        "intelligent_sleep_mode": "0", 
+                        "notification_panel_active_app_list_for_reset": "Wifi;Location;SilentMode;AutoRotate;Bluetooth;UltraPowerSaving;MultiWindow;Sync;AirplaneMode;", 
+                        "mass_kids_mode": "0", 
+                        "mouse_hovering_icon_label": "0", 
+                        "volume_system_speaker": "0", 
+                        "master_arc_motion": "0", 
+                        "haptic_feedback_enabled": "0", 
+                        "led_indicator_missed_event": "1", 
+                        "bt_svcst_com.android.bluetooth.hfp.HeadsetService": "1", 
+                        "toddler_mode_switch": "0", 
+                        "mouse_hovering_magnifier": "0", 
+                        "kids_time_mgr_enable_start_min": "0", 
+                        "premium_watch_style_option": "0", 
+                        "lock_screen_clock_text_size": "30", 
+                        "smart_scroll_adv_gmail_body": "1", 
+                        "glance_view_nearest_alarm": "0", 
+                        "lock_screen_shortcut_number_of_apps": "5", 
+                        "card_security_enabled": "0", 
+                        "FOTA_CLIENT_PUSH": "2", 
+                        "contextual_page_roaming": "1", 
+                        "easy_mode_switch": "1", 
+                        "mouse_hovering_progress_bar_preview": "0", 
+                        "led_indicator_low_battery": "0", 
+                        "reading_mode_app_list": "com.google.android.apps.books/com.google.android.apps.books.app.BooksActivity;", 
+                        "motion_zooming_sensitivity": "5", 
+                        "accelerometer_rotation_second": "0", 
+                        "open_multi_window_view": "0", 
+                        "time_12_24": "24", 
+                        "master_side_motion": "0", 
+                        "wake_up_lock_screen": "0", 
+                        "accelerometer_rotation": "0", 
+                        "handwriting_language_list": "", 
+                        "call_noise_reduction": "1", 
+                        "easy_mode_clock": "1", 
+                        "settings_gridui": "0", 
+                        "flash_notification": "0", 
+                        "pen_hovering_icon_label": "0", 
+                        "sound_profile_mode": "0", 
+                        "screen_brightness": "162", 
+                        "vibrate_when_ringing": "0", 
+                        "is_secured_lock": "0", 
+                        "dormant_disable_incoming_calls": "1", 
+                        "min_minder": "0", 
+                        "spliteview_mode_music": "1", 
+                        "notification_panel_default_active_app_list": "Wifi;Location;SilentMode;AutoRotate;Bluetooth;UltraPowerSaving;MultiWindow;Sync;AirplaneMode;", 
+                        "lockscreen_shortcut_box": "0", 
+                        "FOTA_CLIENT_TERM_VER": "3.0", 
+                        "my_profile_enabled": "0", 
+                        "smart_scroll_acceleration": "1", 
+                        "air_motion_web_navigate": "0", 
+                        "popup_incoming_call": "0", 
+                        "contextual_page": "1", 
+                        "volume_ring": "11", 
+                        "smart_bonding": "0", 
+                        "side_motion_one_hand_operation": "0", 
+                        "onehand_calculator_enabled": "0", 
+                        "drivelink_rejectmessage_body": "", 
+                        "any_screen_enabled": "0", 
+                        "smart_scroll": "0", 
+                        "motion_tilt_to_list_scrolling": "0", 
+                        "led_indicator_charing": "1", 
+                        "alarm_alert": "content://media/internal/audio/media/5", 
+                        "easy_mode_gallery": "1", 
+                        "preload_list": "", 
+                        "smart_scroll_adv_email_body": "1", 
+                        "lock_screen_shortcut_app_list": "com.samsung.android.snote/com.samsung.android.snote.control.ui.filemanager.MainHomeActivity;com.sec.android.app.sbrowser/com.sec.android.app.sbrowser.SBrowserMainActivity;com.google.android.googlequicksearchbox/com.google.android.googlequicksearchbox.SearchActivity;com.sec.android.app.camera/com.sec.android.app.camera.Camera;com.sec.android.gallery3d/com.sec.android.gallery3d.app.Gallery;", 
+                        "motion_zooming": "0", 
+                        "volume_system": "9", 
+                        "hearing_aid": "0", 
+                        "onehand_pattern_enabled": "0", 
+                        "mtp_drive_display": "1", 
+                        "vibrate_in_silent": "1", 
+                        "toolbox_earphones_only": "0", 
+                        "pen_hovering_webpage_magnifier": "0", 
+                        "pen_hovering_ripple_effect": "0", 
+                        "pen_settings": "1", 
+                        "recommended_apps_automatically_earphones": "1", 
+                        "driving_mode_incoming_call_notification": "0", 
+                        "driving_mode_message_contents": "0", 
+                        "samsung_errorlog_agree": "0", 
+                        "safety_zone_enable": "0", 
+                        "my_profile_is_text_button_selected": "1", 
+                        "easy_mode_call": "1", 
+                        "tag_current_location_snote": "0", 
+                        "kids_time_mgr_enable_start_hour": "8", 
+                        "notification_panel_active_app_list": "Wifi;Location;SilentMode;AutoRotate;Bluetooth;UltraPowerSaving;MultiWindow;Sync;AirplaneMode;", 
+                        "quick_launch_app": "1", 
+                        "pen_detachment_alert": "0", 
+                        "torch_light": "0", 
+                        "motion_pan_to_browse_image_sensitivity": "5", 
+                        "lock_additional_weather": "0", 
+                        "surface_palm_touch": "1", 
+                        "ringtone": "content://media/internal/audio/media/50", 
+                        "select_name_4": "SIM 4", 
+                        "select_name_5": "SIM 5", 
+                        "select_name_2": "SIM 2", 
+                        "select_name_3": "SIM 3", 
+                        "select_name_1": "SIM 1", 
+                        "screen_brightness_mode": "0", 
+                        "volume_notification_speaker": "2", 
+                        "bt_svcst_com.android.bluetooth.hdp.HealthService": "1", 
+                        "sim4_value": "0", 
+                        "next_alarm_formatted": "", 
+                        "toddler_mode_data_state": "0", 
+                        "dormant_start_hour": "21", 
+                        "finger_air_view_pointer": "0", 
+                        "dmb_antenna_auto_start": "0", 
+                        "pen_writing_buddy": "1", 
+                        "tty_mode": "0", 
+                        "mtp_open_session": "0", 
+                        "pen_hovering_information_preview": "0", 
+                        "e_reading_display_mode": "1", 
+                        "motion_pick_up_to_call_out": "0", 
+                        "transition_animation_scale": "1.0", 
+                        "recommended_apps_list_dockings": "com.android.email/com.android.email.activity.Welcome;com.sec.android.gallery3d/com.sec.android.gallery3d.app.Gallery;com.google.android.youtube/com.google.android.youtube.app.honeycomb.Shell$HomeActivity;com.samsung.video/com.samsung.video.VideoMain;", 
+                        "cradle_launch": "1", 
+                        "pen_detect_mode_disabled": "0"
+                    }, 
+                    "secure": {
+                        "mount_ums_prompt": "1", 
+                        "roam_guard_data_international": "1", 
+                        "lock_motion_tilt_to_unlock": "0", 
+                        "locationPackagePrefixWhitelist": "", 
+                        "enabled_input_methods": "com.sec.android.inputmethod/.SamsungKeypad:com.google.android.googlequicksearchbox/com.google.android.voicesearch.ime.VoiceInputMethodService", 
+                        "android_id": "54577def8b2650ff", 
+                        "sms_default_application": "com.google.android.talk", 
+                        "roam_setting_call_international_forced": "0", 
+                        "accessibility_script_injection": "0", 
+                        "bluetooth_addr_valid": "1", 
+                        "lockscreen.power_button_instantly_locks": "1", 
+                        "touch_exploration_enabled": "0", 
+                        "kddi_cpa_on": "0", 
+                        "sprint_gsm_sms_guard": "1", 
+                        "roam_setting_call_international": "0", 
+                        "roam_setting_data_domestic_forced": "0", 
+                        "selected_input_method_subtype": "-1", 
+                        "default_input_method": "com.sec.android.inputmethod/.SamsungKeypad", 
+                        "screensaver_default_component": "com.google.android.deskclock/com.android.deskclock.Screensaver", 
+                        "roam_guard_call_international": "1", 
+                        "b_ds_dialog_displayed_on_boot": "0", 
+                        "masterLocationPackagePrefixWhitelist": "com.google.android.gms", 
+                        "location_providers_allowed": "gps", 
+                        "backup_transport": "com.google.android.backup/.BackupTransportService", 
+                        "mount_ums_autostart": "0", 
+                        "roam_guard_sms_international": "1", 
+                        "b_ds_dialog_displayed_settings": "0", 
+                        "lock_screen_owner_info_enabled": "0", 
+                        "facelock_detection_threshold": "0.0", 
+                        "input_methods_subtype_history": "", 
+                        "accessibility_sec_captioning_enabled": "1", 
+                        "roam_dial_international_forced": "0", 
+                        "print_service_search_uri": "https://play.google.com/store/apps/collection/promotion_3000abc_print_services", 
+                        "dropbox:data_app_crash": "disabled", 
+                        "accessibility_display_magnification_auto_update": "1", 
+                        "roam_guard_call_domestic": "1", 
+                        "location_pdr_enabled": "0", 
+                        "roam_setting_call_domestic": "1", 
+                        "allowed_geolocation_origins": "http://www.google.co.uk http://www.google.com", 
+                        "roam_dial_international_enabled": "0", 
+                        "lock_signature_visible_pattern": "1", 
+                        "lockscreen.disabled": "0", 
+                        "roam_guard_data_international_forced": "0", 
+                        "roam_guard_data_domestic_forced": "0", 
+                        "mount_ums_notify_enabled": "1", 
+                        "bluetooth_name": "SM-T113", 
+                        "roam_guard_data_domestic": "1", 
+                        "screensaver_enabled": "0", 
+                        "user_setup_complete": "1", 
+                        "sms_outgoing_check_max_count": "1000", 
+                        "config_update_certificate": "MIID4TCCAsmgAwIBAgIJAMsyDT+FwMuvMA0GCSqGSIb3DQEBBQUAMIGGMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNTW91bnRhaW4gVmlldzETMBEGA1UECgwKR29vZ2xlIEluYzEQMA4GA1UECwwHQW5kcm9pZDEjMCEGCSqGSIb3DQEJARYUc2VjdXJpdHlAYW5kcm9pZC5jb20wHhcNMTIwOTEwMjA0NDQxWhcNMTIxMDEwMjA0NDQxWjCBhjELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEzARBgNVBAoMCkdvb2dsZSBJbmMxEDAOBgNVBAsMB0FuZHJvaWQxIzAhBgkqhkiG9w0BCQEWFHNlY3VyaXR5QGFuZHJvaWQuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwuFNNPal1QpUSH8MU5T+BSSbCv/jTU8pbRKwYfq4ZmsjG1BxX8GJS/itdHr5IgG5YGSRpB9JkWJTAne54Qv2xX3ck8yMySjOKbsCuF3Qnrv1HiM1w0PmMvPC5GvDJz9alrrsq6uj40Hd5ina8pTKieYO1PNIf1MByBnrq/615cPOwb4UAYUwx4ChFG8aUNoChgYk0Ain7YoX4Pw7/tXIiVArsPWRbtzXVaMNWONRUM3SGVT5NO67LEEk0vIkDVjmGnJaDkkF+yqAr24ekl2qdMQb9cEnc1wNCMtVdyxUelZoVxFnot3m4ZhYIPzGI2E88TJ6c30Qs1ocHuPXW8KfGQIDAQABo1AwTjAdBgNVHQ4EFgQUXlT7Zj4V/hHVbyL54kmRYizK/powHwYDVR0jBBgwFoAUXlT7Zj4V/hHVbyL54kmRYizK/powDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEAE5D6pMFMJMwVTtrzZXExgn6r2q7LugmdIpaoFjiU/Iv/bk3VvhDU5jjE54G/fqi/g415yowkFQ02/ZkrTm/q3anvWsppN3NEns2YDi4moEhwLZcCVBzhjkppHGgkLHadzlJZdUFLnzZbDuiZrDNPEkjldVejF1qGt6LbW6d8xNmscerUdKJSUqryOi3U8SXjlTWu5d/hmajQLEe7VJ3y8q5rEsCfsb15EyYxNLfTZuf4PXVU/+kSciTyJxkPZAaz2J1zXQegzC+k3gzNnovlHYlDc5EaVnprsBgOCkaWQfjr6/5YyJysM96WMjndIjyFZSHnj9yF4j7JDwB9qEfxvA==", 
+                        "speak_password": "0", 
+                        "sprint_gsm_data_guard": "1", 
+                        "accessibility_web_content_key_bindings": "0x13=0x01000100; 0x14=0x01010100; 0x15=0x02000001; 0x16=0x02010001; 0x200000013=0x02000601; 0x200000014=0x02010601; 0x200000015=0x03020101; 0x200000016=0x03010201; 0x200000023=0x02000301; 0x200000024=0x02010301; 0x200000037=0x03070201; 0x200000038=0x03000701:0x03010701:0x03020701;", 
+                        "b_es_offl_enabled": "1", 
+                        "screensaver_components": "com.android.dreams.basic/com.android.dreams.basic.Colors", 
+                        "locationPackagePrefixBlacklist": "", 
+                        "last_setup_shown": "eclair_1", 
+                        "roam_setting_data_domestic": "0", 
+                        "facelock_liveliness_recognition_threshold": "2.2", 
+                        "roam_setting_call_domestic_forced": "0", 
+                        "voice_recognition_service": "com.google.android.googlequicksearchbox/com.google.android.voicesearch.serviceapi.GoogleRecognitionService", 
+                        "data_national_roaming_mode": "0", 
+                        "lock_screen_quick_note": "1", 
+                        "roam_guard_call_domestic_forced": "0", 
+                        "backup_enabled": "0", 
+                        "mount_play_not_snd": "1", 
+                        "roam_setting_data_international_forced": "0", 
+                        "roam_setting_data_international": "0", 
+                        "sprint_gsm_data_roaming": "0", 
+                        "roam_guard_call_international_forced": "0", 
+                        "masterLocationPackagePrefixBlacklist": "com.google.,com.semaphoremobile.zagat.android", 
+                        "screensaver_activate_on_sleep": "1", 
+                        "screensaver_activate_on_dock": "0", 
+                        "pubkey_blacklist": "5f3ab33d55007054bc5e3e5553cd8d8465d77c61,783333c9687df63377efceddd82efa9101913e8e", 
+                        "long_press_timeout": "500", 
+                        "ssl_session_cache": "file", 
+                        "data_roaming2": "0", 
+                        "dropbox:data_app_wtf": "disabled", 
+                        "facelock_max_center_movement": "10.0", 
+                        "accessibility_display_magnification_scale": "2.0", 
+                        "accessibility_display_magnification_enabled": "0", 
+                        "dropbox:data_app_anr": "disabled", 
+                        "sprint_gsm_voice_guard": "1", 
+                        "bluetooth_address": "E4:58:E7:36:F1:63", 
+                        "lock_screen_lock_after_timeout": "5000", 
+                        "accessibility_script_injection_url": "https://ssl.gstatic.com/accessibility/javascript/android/AndroidVox_v1.js", 
+                        "sms_outgoing_check_interval_ms": "600000", 
+                        "lockscreen.options": "enable_facelock", 
+                        "auto_swipe_main_user": "0", 
+                        "usb_setting_mode": "0", 
+                        "mock_location": "0"
+                    }
+                }, 
+                "schema": "CREATE TABLE android_metadata (locale TEXT);CREATE TABLE system (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT UNIQUE ON CONFLICT REPLACE,value TEXT);CREATE INDEX systemIndex1 ON system (name);CREATE TABLE secure (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT UNIQUE ON CONFLICT REPLACE,value TEXT);CREATE INDEX secureIndex1 ON secure (name);CREATE TABLE global (_id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT UNIQUE ON CONFLICT REPLACE,value TEXT);CREATE INDEX globalIndex1 ON global (name);CREATE TABLE bluetooth_devices (_id INTEGER PRIMARY KEY,name TEXT,addr TEXT,channel INTEGER,type INTEGER);CREATE TABLE bookmarks (_id INTEGER PRIMARY KEY,title TEXT,folder TEXT,intent TEXT,shortcut INTEGER,ordering INTEGER);CREATE INDEX bookmarksIndex1 ON bookmarks (folder);CREATE INDEX bookmarksIndex2 ON bookmarks (shortcut);CREATE TABLE powersaving_appsetting (_id INTEGER PRIMARY KEY,packagename TEXT UNIQUE,mode INTEGER,autovalue INTEGER,manualvalue INTEGER);CREATE INDEX powersaving_appsettingIndex1 ON powersaving_appsetting (packagename);"
+            }
+        }, 
+        "restore_stock_recovery": true, 
+        "databases": {
+            "locksettings": {
+                "__depend__": "update.settings.locksettings", 
+                "data": {
+                    "android_metadata": [
+                        {
+                            "locale": "en_US"
+                        }
+                    ]
+                }
+            }, 
+            "__make__": true, 
+            "com.android.providers.settings": {
+                "__depend__": "update.settings.com\\.android\\.providers\\.settings", 
+                "data": {
+                    "bookmarks": [
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 97, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_CALCULATOR;end", 
+                            "folder": null, 
+                            "_id": 1
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 98, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_BROWSER;end", 
+                            "folder": null, 
+                            "_id": 2
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 99, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_CONTACTS;end", 
+                            "folder": null, 
+                            "_id": 3
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 101, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_EMAIL;end", 
+                            "folder": null, 
+                            "_id": 4
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 108, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_CALENDAR;end", 
+                            "folder": null, 
+                            "_id": 5
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 109, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_MAPS;end", 
+                            "folder": null, 
+                            "_id": 6
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 112, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_MUSIC;end", 
+                            "folder": null, 
+                            "_id": 7
+                        }, 
+                        {
+                            "title": "", 
+                            "ordering": null, 
+                            "shortcut": 115, 
+                            "intent": "#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10000000;SEL;action=android.intent.action.MAIN;category=android.intent.category.APP_MESSAGING;end", 
+                            "folder": null, 
+                            "_id": 8
+                        }
+                    ], 
+                    "android_metadata": [
+                        {
+                            "locale": "en_US"
+                        }
+                    ], 
+                    "powersaving_appsetting": [
+                        {
+                            "packagename": "com.android.systemui", 
+                            "_id": 1, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.knox.seandroid", 
+                            "_id": 2, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.phone", 
+                            "_id": 3, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.launcher", 
+                            "_id": 4, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.gms", 
+                            "_id": 5, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.partnersetup", 
+                            "_id": 6, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.settings.mt", 
+                            "_id": 7, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.android.widgetapp.briefing4x2", 
+                            "_id": 8, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.android.tripwidget", 
+                            "_id": 9, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.widgetapp.ap.hero.accuweather", 
+                            "_id": 10, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.android.app.storyalbumwidget", 
+                            "_id": 11, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.android.app.gestureservice", 
+                            "_id": 12, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.bluetooth", 
+                            "_id": 13, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.nuance.swype.input:SwypeConnect", 
+                            "_id": 14, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.mms", 
+                            "_id": 15, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.android.app.episodes", 
+                            "_id": 16, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.widgetapp.alarmwidget", 
+                            "_id": 17, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.widgetapp.digitalclock2x1", 
+                            "_id": 18, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.contacts", 
+                            "_id": 19, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.gsf.login", 
+                            "_id": 20, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.phone", 
+                            "_id": 21, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.pcw", 
+                            "_id": 22, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.esdk.elm", 
+                            "_id": 23, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "tv.peel.samsung.app", 
+                            "_id": 24, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.qualcomm", 
+                            "_id": 25, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.vlingo.midas", 
+                            "_id": 26, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.providers.calendar", 
+                            "_id": 27, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.settings", 
+                            "_id": 28, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.sysscope", 
+                            "_id": 29, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.talk", 
+                            "_id": 30, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.telenav.app.android.cingular", 
+                            "_id": 31, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.googlequicksearchbox", 
+                            "_id": 32, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.matchboxmobile.wisp", 
+                            "_id": 33, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.daemonapp", 
+                            "_id": 34, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.wlandebugtool", 
+                            "_id": 35, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.youtube", 
+                            "_id": 36, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.qualcomm.atuner", 
+                            "_id": 37, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.att.android.digitallocker:loadingProcess", 
+                            "_id": 38, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.qualcomm.qcrilmsgtunnel", 
+                            "_id": 39, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.sCloudSync", 
+                            "_id": 40, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.vending", 
+                            "_id": 41, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.gameloft.android.ANMP.GloftA7HM:remote", 
+                            "_id": 42, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.coolots.chaton", 
+                            "_id": 43, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.chaton", 
+                            "_id": 44, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "flipboard.app", 
+                            "_id": 45, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "android.googleSearch.googleSearchWidget", 
+                            "_id": 46, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.shealth", 
+                            "_id": 47, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.everglades", 
+                            "_id": 48, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.samsung.music", 
+                            "_id": 49, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.keyguard", 
+                            "_id": 50, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.popupuireceiver", 
+                            "_id": 51, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.SecSetupWizard", 
+                            "_id": 52, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.music:main", 
+                            "_id": 53, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.apps.maps:LocationFriendService", 
+                            "_id": 54, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.google.android.gm", 
+                            "_id": 55, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.musicfx", 
+                            "_id": 56, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.provider.snote", 
+                            "_id": 57, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.music:service", 
+                            "_id": 58, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.gallery3d", 
+                            "_id": 59, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.widgetapp.SPlannerAppWidget", 
+                            "_id": 60, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.android.calendar", 
+                            "_id": 61, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.widgetapp.programmonitorwidget", 
+                            "_id": 62, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.sec.android.app.clockpackage", 
+                            "_id": 63, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.imangi.templerun2", 
+                            "_id": 64, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.rovio.angrybirdsspace.ads", 
+                            "_id": 65, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ironhidegames.android.kingdomrush", 
+                            "_id": 66, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.g6677.android.cdentist", 
+                            "_id": 67, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.gameloft.android.ANMP.GloftDMHM", 
+                            "_id": 68, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.disney.WMPLite", 
+                            "_id": 69, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.mojang.minecraftpe", 
+                            "_id": 70, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ea.games.nfs13_row", 
+                            "_id": 71, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.disney.brave_google", 
+                            "_id": 72, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ea.BejeweledBlitz_row", 
+                            "_id": 73, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.candyrufusgames.survivalcraft", 
+                            "_id": 74, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.vectorunit.blue", 
+                            "_id": 75, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ngmoco.pocketgod", 
+                            "_id": 76, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.bigduckgames.flow", 
+                            "_id": 77, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "org.orangenose.games", 
+                            "_id": 78, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.kiloo.subwaysurf", 
+                            "_id": 79, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.kiwi.mysteryestate", 
+                            "_id": 80, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ea.game.simpsons4_na", 
+                            "_id": 81, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.naquatic.guncraft", 
+                            "_id": 82, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.mobilityware.solitaire", 
+                            "_id": 83, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 40
+                        }, 
+                        {
+                            "packagename": "com.hapogames.blocksburst", 
+                            "_id": 84, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.DefiantDev.SkiSafari", 
+                            "_id": 85, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.eamobile.tetris", 
+                            "_id": 86, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.playfirst.playground.dinerdashdeluxe", 
+                            "_id": 87, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.rovio.angrybirds", 
+                            "_id": 88, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.alphacloud.castlemaster", 
+                            "_id": 89, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.sega.sonic1", 
+                            "_id": 90, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.fullfat.android.flickgolf", 
+                            "_id": 91, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.disney.TempleRunOz.goo", 
+                            "_id": 92, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.pikpok.turbo", 
+                            "_id": 93, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.feelingtouch.zombiex", 
+                            "_id": 94, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.disney.WMW", 
+                            "_id": 95, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.popcap.pvz_row", 
+                            "_id": 96, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.twodboy.worldofgoofull", 
+                            "_id": 97, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.zeptolab.ctr.ads", 
+                            "_id": 98, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.kabam.ff6android", 
+                            "_id": 99, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.halfbrick.jetpackjoyride", 
+                            "_id": 100, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "me.pou.app", 
+                            "_id": 101, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "com.naturalmotion.csrracing", 
+                            "_id": 102, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.rockstar.gta3", 
+                            "_id": 103, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 20
+                        }, 
+                        {
+                            "packagename": "air.com.benyhe.PrisonBreakFree", 
+                            "_id": 104, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.wooga.diamonddash", 
+                            "_id": 105, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.g6677.android.artnail2", 
+                            "_id": 106, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.creativemobile.DragRacing", 
+                            "_id": 107, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.ea.tetrisblitz_row", 
+                            "_id": 108, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 20
+                        }, 
+                        {
+                            "packagename": "de.lotum.whatsinthefoto.us", 
+                            "_id": 109, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 99
+                        }, 
+                        {
+                            "packagename": "br.com.beholdstudios.knightspp", 
+                            "_id": 110, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.com2us.HB3D", 
+                            "_id": 111, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.fde.avpevolution", 
+                            "_id": 112, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.mediocre.grannysmith", 
+                            "_id": 113, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.magmic.phase10", 
+                            "_id": 114, 
+                            "mode": 1, 
+                            "manualvalue": 99, 
+                            "autovalue": 30
+                        }, 
+                        {
+                            "packagename": "com.tocaboca.tocatrain", 
+                            "_id": 115, 
+                            "mode": 1, 
+                            "manualvalue": 40, 
+                            "autovalue": 40
+                        }
+                    ], 
+                    "bluetooth_devices": []
+                }
+            }
+        }, 
+        "property": {
+            "sys": {
+                "profiler_ms": "0", 
+                "clssprld2": "766", 
+                "silent": "0", 
+                "clssprld1": "680", 
+                "country": "US", 
+                "flipfontpath": "default", 
+                "dalvik": {
+                    "vm": {
+                        "lib": "libdvm.so"
+                    }
+                }, 
+                "localevar": "", 
+                "storage_preload": "2"
+            }, 
+            "audio": {
+                "sysvolume": "0", 
+                "hphonesysvolume": "9", 
+                "headsetsysvolume": "9", 
+                "ringermode": "2", 
+                "allsoundmute": "0"
+            }, 
+            "radio": {
+                "plmnname_2": "", 
+                "plmnname_1": "", 
+                "singlesim": {
+                    "network": "1"
+                }, 
+                "gprsattachmode": "1", 
+                "initphone-type": "1", 
+                "readcheck": "1"
+            }
         }
     }
 }
